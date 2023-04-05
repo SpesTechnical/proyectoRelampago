@@ -1,15 +1,16 @@
 <?php
 include_once('../data/consultas.php');
+require_once('consultas.php');
 $datos = new consultas;
 
 $array_pestel=[$_POST['politico'], $_POST['economico'], $_POST['social'], $_POST['tecnologico'], $_POST['ecologico'], $_POST['legal']];
 
 for($i = 0; $i<6; $i++){
-   if(!$datos->verificarPestelFactor('valdo', $_POST['idFactor'], $i+1) && $array_pestel[$i]=="Aplica"){
+   if(!$datos->verificarPestelFactor($_SESSION['id'], $_POST['idFactor'], $i+1) && $array_pestel[$i]=="Aplica"){
     $datos->ingresarPestel($i+1, $_POST['idFactor']);
    } 
-   else if($datos->verificarPestelFactor('valdo', $_POST['idFactor'], $i+1) && $array_pestel[$i]!="Aplica"){
-    $datos->borrarPestelFactor('valdo', $_POST['idFactor'], $i+1);
+   else if($datos->verificarPestelFactor($_SESSION['id'], $_POST['idFactor'], $i+1) && $array_pestel[$i]!="Aplica"){
+    $datos->borrarPestelFactor($_SESSION['id'], $_POST['idFactor'], $i+1);
    }
 }
 
