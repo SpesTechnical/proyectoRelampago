@@ -151,6 +151,6 @@ if (isset($_POST['accion'])) {
         $empresa = $_POST['empresa'];
         $segmento = $_POST['segmento'];
         
-        $ObjADM->insertaUsuario($usuario,$contrasena,$empresa,$segmento);
+        $ObjADM->insertaUsuario($usuario,md5($contrasena),$empresa,$segmento);
     }
 }
