@@ -1,3 +1,8 @@
+
+<?php
+require_once('bll/consultas.php');
+if (isset($_SESSION['id'])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +12,7 @@
   <title>
     Inicio
   </title>
-  <?php include_once('./links.php'); ?>
+  <?php include_once('../links.php'); ?>
 </head>
 
 <body>
@@ -25,10 +30,17 @@
       <p>Bienvenido</p>
     </div>
     <?php
-    require('footer.php')
+    require('../footer.php')
     ?>
 
 
 </body>
 
 </html>
+
+<?php
+} else {
+    session_destroy();
+    header("location:./index.php");
+}
+?>
